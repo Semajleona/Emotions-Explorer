@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>My Emotions Explorer</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+
+        <div class="page-header text-center">
+            <h1>Emotions Explorer</h1>
+            <p>Lets Play & Learn About Our Emotions</p>
+
+        </div>
+    </header>
+
+    <main>
+
+
+        <p>Read a senario, then pick how you feel or want to respond!</p>
+
+        <ul class="messages">
+            <li class="message">Your tummy hurts after eating. How do you feel?</li>
+            <li class="message" style="display:none;">Your friend takes your favorite toy. How do you feel?</li>
+            <li class="message" style="display:none;">Someone gives you a big hug. How do you feel?</li>
+            <li class="message" style="display:none;">You hear a loud noise. How do you feel?</li>
+            <li class="message" style="display:none;">You finish building a big tower with blocks. How do you feel?</li>
+            <li class="message" style="display:none;">Your friend asks to play. How do you feel?</li>
+            <li class="message" style="display:none;">Mom made your favorite cookies. How do you feel?</li>
+            <li class="message" style="display:none;">You read a book about animals. How do you feel?</li>
+            <li class="message" style="display:none;">You hear a fire truck outside. How do you feel?</li>
+            <li class="message" style="display:none;">You have to stop playing, its time to go to bed. How do you feel?
+            </li>
+            <li class="message" style="display:none;">You have to do something new by yourself like putting on your
+                shoes. How do you feel?</li>
+            <li class="message" style="display:none;">You walk into a room and dont see friends. How do you feel?</li>
+            <li class="message" style="display:none;">You here your favorite song. How do you feel?</li>
+            <!--cagegiver added senariois need a loop because i dont know how many will be made-->
+            <% scenarios.forEach(function(item){%>
+                <li class="message">
+                    <p>
+                        <%= item.scenario %>
+                    </p>
+                    <form action="/scenarios/edit" method="POST">
+
+                        <input type="hidden" name="id" value="<%= item._id %>">
+                        <input type="text" name="scenario" value="<%= item.scenario %>" required>
+                        <button type="submit">Edit Senarios</button>
+                    </form>
+
+
+                    <form action="/scenarios/delete" method="POST">
+                        <input type="hidden" name="id" value="<%= item._id %>">
+                        <input type="text" name="scenario" value="<%= item.scenario %>" required>
+                        <button type="submit">Delete A Senarios</button>
+                    </form>
+
+
+
+
+
+
+
+                </li>
+                <% }) %>
+        </ul>
+
+        <section class="caregiverInput">
+            <span>Caregivers can play too!</span>
+
+            <p>Create a personal senario for your child</p>
+
+            <form action="/scenarios" method="POST">
+                <input type="text" name="scenario" placeholder="type senario here" required>
+                <button type="submit">Add Senarios</button>
+
+
+            </form>
+        </section>
+
+
+
+        <div class="container">
+
+            <section class="emtionsOptions">
+
+                <button type="button" class="ebtn" data-pic="happy" onclick="chosenpic(this)">
+                    <img src="/emotion_explorer_10_images/happy.png">
+
+                </button>
+
+                <button type="button" class="ebtn" data-pic="angry" onclick="chosenpic(this)">
+                    <img src="/emotion_explorer_10_images/angry.png">
+
+                </button>
+
+                <button type="button" class="ebtn" data-pic="calm" onclick="chosenpic(this)">
+                    <img src="/emotion_explorer_10_images/calm.png">
+
+                </button>
+
+                <button type="button" class="ebtn" data-pic="excited" onclick="chosenpic(this)">
+                    <img src="/emotion_explorer_10_images/excited.png">
+
+                </button>
+
+                <button type="button" class="ebtn" data-pic="frustrated" onclick="chosenpic(this)">
+                    <img src="/emotion_explorer_10_images/frustrated.png">
+
+                </button>
+
+                <button type="button" class="ebtn" data-pic="proud" onclick="chosenpic(this)">
+                    <img src="/emotion_explorer_10_images/proud.png">
+
+                </button>
+
+                <button type="button" class="ebtn" data-pic="sad" onclick="chosenpic(this)">
+                    <img src="/emotion_explorer_10_images/sad.png">
+
+                </button>
+
+                <button type="button" class="ebtn" data-pic="surprised" onclick="chosenpic(this)">
+                    <img src="/emotion_explorer_10_images/surprised.png">
+
+                </button>
+
+                <button type="button" class="ebtn" data-pic="scared" onclick="chosenpic(this)">
+                    <img src="/emotion_explorer_10_images/scared.png">
+
+                </button>
+            </section>
+        </div>
+        <span class="result"> </span>
+
+        <button type="button" id="newQuestion" onclick="nextQuestion()">Next Question </button>
+
+
+
+    </main>
+
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>
