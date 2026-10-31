@@ -40,33 +40,40 @@
             <li class="message" style="display:none;">You walk into a room and dont see friends. How do you feel?</li>
             <li class="message" style="display:none;">You here your favorite song. How do you feel?</li>
             <!--cagegiver added senariois need a loop because i dont know how many will be made-->
-            <% scenarios.forEach(function(item){%>
-                <li class="message">
-                    <p>
-                        <%= item.scenario %>
-                    </p>
-                    <form action="/scenarios/edit" method="POST">
+            
+<% scenarios.forEach(function(item){ %>
+    <li class="message">
 
-                        <input type="hidden" name="id" value="<%= item._id %>">
-                        <input type="text" name="scenario" value="<%= item.scenario %>" required>
-                        <button type="submit">Edit Senarios</button>
-                    </form>
+        <p><%= item.scenario %></p>
 
+        <!-- EDIT SCENARIO -->
+        <form action="/scenarios/edit" method="POST">
+            <input type="hidden" name="id" value="<%= item._id %>">
 
-                    <form action="/scenarios/delete" method="POST">
-                        <input type="hidden" name="id" value="<%= item._id %>">
-                        <input type="text" name="scenario" value="<%= item.scenario %>" required>
-                        <button type="submit">Delete A Senarios</button>
-                    </form>
+            <input type="text"
+                   name="scenario"
+                   value="<%= item.scenario %>"
+                   id="edit-<%= item._id %>"
+                   style="display:none;"
+                   required>
 
+            <button type="button"
+                    onclick="document.getElementById('edit-<%= item._id %>').style.display='inline-block'">
+                ✏️ Edit
+            </button>
 
+            <button type="submit">Save</button>
+        </form>
 
+        <!-- DELETE SCENARIO -->
+        <form action="/scenarios/delete" method="POST">
+            <input type="hidden" name="id" value="<%= item._id %>">
 
+            <button type="submit">🗑️ Delete</button>
+        </form>
 
-
-
-                </li>
-                <% }) %>
+    </li>
+<% }) %>
         </ul>
 
         <section class="caregiverInput">
