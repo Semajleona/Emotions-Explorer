@@ -40,7 +40,14 @@
             <li class="message" style="display:none;">You walk into a room and dont see friends. How do you feel?</li>
             <li class="message" style="display:none;">You here your favorite song. How do you feel?</li>
             <!--cagegiver added senariois need a loop because i dont know how many will be made-->
-            
+
+
+   <span>Caregivers can play too!</span>
+
+<p>Create a personal senario for your child</p>
+
+
+
 <% scenarios.forEach(function(item){ %>
     <li class="message">
 
@@ -77,9 +84,7 @@
         </ul>
 
         <section class="caregiverInput">
-            <span>Caregivers can play too!</span>
-
-            <p>Create a personal senario for your child</p>
+         
 
             <form action="/scenarios" method="POST">
                 <input type="text" name="scenario" placeholder="type senario here" required>
